@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Ati Motors — Em breve</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { color-scheme: dark; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 20%, #22242a 0%, #121316 70%);
+      font-family: 'Montserrat', sans-serif;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 24px;
+    }
+    .wrap { max-width: 560px; }
+    .brand {
+      font-size: 2.4rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+    .brand span { color: #d41a2d; }
+    .tag {
+      color: rgba(255,255,255,.6);
+      margin-bottom: 32px;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    h1 {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin: 0 0 12px;
+    }
+    p {
+      color: rgba(255,255,255,.65);
+      line-height: 1.6;
+      margin: 0 auto 28px;
+      max-width: 440px;
+    }
+    .bar {
+      width: 220px;
+      height: 4px;
+      margin: 0 auto 28px;
+      border-radius: 4px;
+      background: rgba(255,255,255,.1);
+      overflow: hidden;
+    }
+    .bar::after {
+      content: '';
+      display: block;
+      width: 40%;
+      height: 100%;
+      background: #d41a2d;
+      border-radius: 4px;
+      animation: slide 1.6s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(350%); }
+    }
+    a.mail {
+      color: #f2f2f2;
+      text-decoration: none;
+      border-bottom: 1px solid rgba(255,255,255,.3);
+    }
+    a.mail:hover { border-color: #f2f2f2; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">Ati<span>/</span>Motors</div>
+    <div class="tag">Site em construção</div>
+    <div class="bar"></div>
+    <h1>Estamos preparando algo novo</h1>
+    <p>
+      O novo site da Ati Motors está a caminho — um jeito diferente de comprar e vender carros
+      com confiança, começando aqui na região.
+    </p>
+    <p style="margin-bottom:0;">
+      Contato: <a class="mail" href="mailto:contato@atimotors.com.br">contato@atimotors.com.br</a>
+    </p>
+  </div>
+</body>
+</html>
