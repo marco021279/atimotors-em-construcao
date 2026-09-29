@@ -75,6 +75,39 @@
       border-bottom: 1px solid rgba(255,255,255,.3);
     }
     a.mail:hover { border-color: #f2f2f2; }
+
+    /* Banner de consentimento (LGPD) — mesmo padrão do site principal: nenhum
+       cookie de análise carrega antes do clique em "Aceitar". */
+    .cookie-bar {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: #1a1b1e;
+      border-top: 1px solid rgba(255,255,255,.1);
+      padding: 16px 24px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      font-size: 0.85rem;
+      color: rgba(255,255,255,.7);
+      z-index: 10;
+    }
+    .cookie-bar button {
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 600;
+      padding: 8px 18px;
+      border-radius: 4px;
+      border: 1px solid rgba(255,255,255,.3);
+      background: transparent;
+      color: #f2f2f2;
+      cursor: pointer;
+    }
+    .cookie-bar button.accept {
+      background: #d41a2d;
+      border-color: #d41a2d;
+    }
   </style>
 </head>
 <body>
@@ -91,5 +124,51 @@
       Contato: <a class="mail" href="mailto:contato@atimotors.com.br">contato@atimotors.com.br</a>
     </p>
   </div>
+
+  <div id="cookie-bar" class="cookie-bar" style="display:none;">
+    <span>Usamos cookies de análise (Google Analytics) só depois do seu aceite.</span>
+    <button type="button" onclick="declineAnalytics()">Recusar</button>
+    <button type="button" class="accept" onclick="acceptAnalytics()">Aceitar</button>
+  </div>
+
+  <script>
+    var GA_MEASUREMENT_ID = 'G-EC143DHCNL';
+    var CONSENT_KEY = 'cookie-consent';
+
+    function loadGtag() {
+      var script = document.createElement('script');
+      script.async = true;
+      script.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_MEASUREMENT_ID;
+      document.head.appendChild(script);
+
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+      gtag('config', GA_MEASUREMENT_ID);
+      window.gtag = gtag;
+    }
+
+    function acceptAnalytics() {
+      try { localStorage.setItem(CONSENT_KEY, 'accepted'); } catch (e) {}
+      document.getElementById('cookie-bar').style.display = 'none';
+      loadGtag();
+    }
+
+    function declineAnalytics() {
+      try { localStorage.setItem(CONSENT_KEY, 'declined'); } catch (e) {}
+      document.getElementById('cookie-bar').style.display = 'none';
+    }
+
+    (function () {
+      var consent = null;
+      try { consent = localStorage.getItem(CONSENT_KEY); } catch (e) {}
+
+      if (consent === 'accepted') {
+        loadGtag();
+      } else if (consent !== 'declined') {
+        document.getElementById('cookie-bar').style.display = 'flex';
+      }
+    })();
+  </script>
 </body>
 </html>
